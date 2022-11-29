@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:16:19 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/27 14:46:09 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:14:09 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ typedef struct s_philo
 }					t_philo;
 
 long			get_timestamp(struct timeval *start);
+void			set_philo(t_philo *philo, t_info *info);
+int				set_info(t_info	*info, char **argv);
 pthread_mutex_t	*create_forks(int num);
 void			destroy_forks(t_info *info);
 struct timeval	*create_time_list(t_info *info);
 int				*create_eaten_list(t_info *info);
 int				is_valid_input(int argc, char *argv[]);
 int				ft_atoi(const char *str);
-int				set_info(t_info	*info, char **argv);
-void			set_philo(t_philo *philo, t_info *info);
 void			monitor(t_info *info);
 void			routine(t_info *info);
 

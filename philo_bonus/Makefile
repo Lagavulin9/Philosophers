@@ -1,12 +1,11 @@
-NAME = philo
+NAME = philo_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = ./
-SRC = philo.c \
-	routine.c \
-	monitor.c \
-	info_utils.c \
-	input_utils.c
+SRC = philo_bonus.c \
+	philo_utils_bonus.c \
+	routine_bonus.c \
+	input_utils_bonus.c
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJS = $(SRCS:.c=.o)
 

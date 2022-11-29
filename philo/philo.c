@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:16:06 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/27 14:57:10 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/28 11:13:32 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,15 @@
 #include <stdlib.h>
 #include "philo.h"
 
-int	set_info(t_info	*info, char **argv)
+long	get_timestamp(struct timeval *start)
 {
-	info->number_of_philos = ft_atoi(argv[1]);
-	info->time_to_die = ft_atoi(argv[2]);
-	info->time_to_eat = ft_atoi(argv[3]);
-	info->time_to_sleep = ft_atoi(argv[4]);
-	info->number_must_eat = 2147483647;
-	if (argv[5])
-		info->number_must_eat = ft_atoi(argv[5]);
-	info->philo_is_dead = 0;
-	info->philo_is_full = 0;
-	info->index = 1;
-	info->philo_ids = malloc(sizeof(pthread_t) * info->number_of_philos);
-	info->forks = create_forks(info->number_of_philos);
-	info->times_eaten = create_eaten_list(info);
-	gettimeofday(&info->start, 0);
-	info->last_eaten = create_time_list(info);
-	pthread_mutex_init(&info->print_mutex, 0);
-	if (!info->times_eaten || !info->last_eaten
-		|| !info->philo_ids || !info->forks)
-		return (-1);
-	return (0);
+	struct timeval	now;
+	long			time;
+
+	gettimeofday(&now, 0);
+	time = (now.tv_sec - start->tv_sec) * 1000;
+	time += (now.tv_usec / 1000 - start->tv_usec / 1000);
+	return (time);
 }
 
 void	set_philo(t_philo *philo, t_info *info)

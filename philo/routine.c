@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 20:12:09 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/27 14:52:02 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/29 12:47:10 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	routine(t_info *info)
 
 	set_philo(&philo, info);
 	if (philo.number % 2 == 0)
-		usleep(philo.time_to_eat);
+		usleep(philo.time_to_eat * 500);
 	if (philo.only_one_philo)
 		only_one_philo(&philo);
 	else
