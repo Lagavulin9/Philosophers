@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:43:00 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/29 11:38:05 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:44:03 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	is_philo_full(t_info *info)
 {
 	int	i;
 
+	if (!info->number_must_eat)
+		return (0);
 	i = 0;
 	while (i < info->number_of_philos)
 	{
@@ -58,8 +60,6 @@ void	monitor(t_info *info)
 			pthread_mutex_unlock(&info->print_mutex);
 			return ;
 		}
-		pthread_mutex_unlock(&info->print_mutex);
-		pthread_mutex_lock(&info->print_mutex);
 		if (is_philo_full(info))
 		{
 			info->philo_is_full = 1;

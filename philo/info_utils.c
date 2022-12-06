@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 18:47:12 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/29 10:42:42 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:18:50 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	set_info(t_info	*info, char **argv)
 	info->time_to_die = ft_atoi(argv[2]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
-	info->number_must_eat = 2147483647;
+	info->number_must_eat = 0;
 	if (argv[5])
 		info->number_must_eat = ft_atoi(argv[5]);
 	info->philo_is_dead = 0;

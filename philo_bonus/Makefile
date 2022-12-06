@@ -9,14 +9,6 @@ SRC = philo_bonus.c \
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 OBJS = $(SRCS:.c=.o)
 
-ifdef SANITIZE
-	CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
-endif
-
-ifdef THREAD
-	CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g3
-endif
-
 all: $(NAME)
 
 %.o : %.c

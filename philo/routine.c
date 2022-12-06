@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 20:12:09 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/29 12:47:10 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/06 19:19:50 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	philo_eat(t_philo *philo)
 	if (!philo->info->philo_is_dead && !philo->info->philo_is_full)
 	{
 		printf("%zu %d has taken a fork\n", \
-		get_timestamp(&philo->start), philo->number);
+			get_timestamp(&philo->start), philo->number);
 		printf("%zu %d is eating\n", \
-		get_timestamp(&philo->start), philo->number);
+			get_timestamp(&philo->start), philo->number);
 	}
 	philo->info->times_eaten[philo->number - 1]++;
 	gettimeofday(&philo->info->last_eaten[philo->number - 1], 0);
@@ -55,7 +55,7 @@ static void	philo_sleep(t_philo *philo)
 		printf("%zu %d is sleeping\n", \
 		get_timestamp(&philo->start), philo->number);
 	pthread_mutex_unlock(&philo->info->print_mutex);
-	while (get_timestamp(&time) < philo->time_to_eat)
+	while (get_timestamp(&time) < philo->time_to_sleep)
 		usleep(100);
 }
 
