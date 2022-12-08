@@ -26,10 +26,4 @@ fclean: clean
 
 re: fclean all
 
-sanitize:
-	make SANITIZE=1 re
-
-thread:
-	make THREAD=1 re
-
 .PHONY: all clean fclean re sanitize thread
