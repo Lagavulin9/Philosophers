@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:43:00 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/29 10:38:21 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:30:46 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long	get_timestamp(struct timeval *start)
 int	set_info(t_info	*info, char **argv)
 {
 	sem_unlink("forks");
-	sem_unlink("print_sem");
+	sem_unlink("shared_sem");
 	info->number_of_philos = ft_atoi(argv[1]);
 	info->time_to_die = ft_atoi(argv[2]);
 	info->time_to_eat = ft_atoi(argv[3]);
@@ -40,7 +40,7 @@ int	set_info(t_info	*info, char **argv)
 		info->number_must_eat = ft_atoi(argv[5]);
 	info->pid_list = ft_calloc(sizeof(pid_t) * info->number_of_philos);
 	info->forks = sem_open("forks", O_CREAT, 0644, info->number_of_philos);
-	info->print_sem = sem_open("print_sem", O_CREAT, 0644, 1);
+	info->shared_sem = sem_open("shared_sem", O_CREAT, 0644, 1);
 	info->number = 1;
 	info->times_eaten = 0;
 	info->philo_is_full = 0;
@@ -61,7 +61,7 @@ void	kill_all_child_proc(t_info *info)
 void	sem_clear(t_info *info)
 {
 	sem_close(info->forks);
-	sem_close(info->print_sem);
+	sem_close(info->shared_sem);
 	sem_unlink("forks");
-	sem_unlink("print_sem");
+	sem_unlink("shared_sem");
 }

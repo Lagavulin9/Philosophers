@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:16:19 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/28 11:14:09 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:22:52 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_info
 	int				index;
 	struct timeval	start;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	shared_mutex;
 	pthread_t		*philo_ids;
 	int				*times_eaten;
 	struct timeval	*last_eaten;

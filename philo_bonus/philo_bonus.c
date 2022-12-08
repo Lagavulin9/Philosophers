@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:16:06 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/29 13:37:12 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:39:04 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	child_process(t_info *info)
 	pthread_create(&thread_id, 0, (void *)routine, info);
 	while (1)
 	{
-		sem_wait(info->print_sem);
+		sem_wait(info->shared_sem);
 		if (info->philo_is_full)
 			break ;
 		if (get_timestamp(&info->last_eaten) > info->time_to_die)
@@ -46,9 +46,9 @@ static void	child_process(t_info *info)
 			printf("%zu %d died\n", get_timestamp(&info->start), info->number);
 			exit(STATUS_DEAD);
 		}
-		sem_post(info->print_sem);
+		sem_post(info->shared_sem);
 	}
-	sem_post(info->print_sem);
+	sem_post(info->shared_sem);
 	pthread_join(thread_id, 0);
 	exit(STATUS_FULL);
 }
@@ -77,5 +77,6 @@ int	main(int argc, char **argv)
 	}
 	monitor(&info);
 	sem_clear(&info);
+	free(info.pid_list);
 	return (0);
 }

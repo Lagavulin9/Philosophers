@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:16:06 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/28 11:13:32 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:36:08 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long	get_timestamp(struct timeval *start)
 
 void	set_philo(t_philo *philo, t_info *info)
 {
-	pthread_mutex_lock(&info->print_mutex);
+	pthread_mutex_lock(&info->shared_mutex);
 	philo->info = info;
 	philo->number = info->index++;
 	philo->time_to_die = info->time_to_die;
@@ -42,7 +42,7 @@ void	set_philo(t_philo *philo, t_info *info)
 	philo->only_one_philo = 0;
 	if (info->number_of_philos == 1)
 		philo->only_one_philo = 1;
-	pthread_mutex_unlock(&info->print_mutex);
+	pthread_mutex_unlock(&info->shared_mutex);
 }
 
 int	main(int argc, char **argv)
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 	while (i < info.number_of_philos)
 		pthread_join(info.philo_ids[i++], 0);
 	destroy_forks(&info);
-	pthread_mutex_destroy(&info.print_mutex);
+	pthread_mutex_destroy(&info.shared_mutex);
 	free(info.forks);
 	free(info.philo_ids);
 	free(info.times_eaten);

@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 19:43:00 by jinholee          #+#    #+#             */
-/*   Updated: 2022/12/06 19:44:03 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:23:51 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_philo_dead(t_info *info)
 		{
 			info->philo_is_dead = 1;
 			printf("%zu %d died\n", get_timestamp(&info->start), i + 1);
-			pthread_mutex_unlock(&info->print_mutex);
+			pthread_mutex_unlock(&info->shared_mutex);
 			return (1);
 		}
 		i++;
@@ -54,18 +54,18 @@ void	monitor(t_info *info)
 {
 	while (1)
 	{
-		pthread_mutex_lock(&info->print_mutex);
+		pthread_mutex_lock(&info->shared_mutex);
 		if (is_philo_dead(info))
 		{
-			pthread_mutex_unlock(&info->print_mutex);
+			pthread_mutex_unlock(&info->shared_mutex);
 			return ;
 		}
 		if (is_philo_full(info))
 		{
 			info->philo_is_full = 1;
-			pthread_mutex_unlock(&info->print_mutex);
+			pthread_mutex_unlock(&info->shared_mutex);
 			return ;
 		}
-		pthread_mutex_unlock(&info->print_mutex);
+		pthread_mutex_unlock(&info->shared_mutex);
 	}
 }

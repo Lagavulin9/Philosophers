@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 18:47:12 by jinholee          #+#    #+#             */
-/*   Updated: 2022/12/06 19:18:50 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:23:10 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	set_info(t_info	*info, char **argv)
 	info->times_eaten = create_eaten_list(info);
 	gettimeofday(&info->start, 0);
 	info->last_eaten = create_time_list(info);
-	pthread_mutex_init(&info->print_mutex, 0);
+	pthread_mutex_init(&info->shared_mutex, 0);
 	if (!info->times_eaten || !info->last_eaten
 		|| !info->philo_ids || !info->forks)
 		return (-1);

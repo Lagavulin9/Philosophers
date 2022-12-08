@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 19:16:19 by jinholee          #+#    #+#             */
-/*   Updated: 2022/12/06 19:49:22 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/12/07 11:30:36 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_info
 	int				philo_is_full;
 	pid_t			*pid_list;
 	sem_t			*forks;
-	sem_t			*print_sem;
+	sem_t			*shared_sem;
 	struct timeval	start;
 	struct timeval	last_eaten;
 }					t_info;
